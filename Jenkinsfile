@@ -19,7 +19,7 @@ pipeline{
                 branch:'main'
             }
         }
-        stage('build){
+        stage('build'){
               steps{
                   bat '.\\mvnw.cmd clean package'
               }
