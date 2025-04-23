@@ -24,5 +24,15 @@ pipeline{
                   bat '.\\mvnw.cmd clean package'
               }
         }
+        stage('test'){
+            steps{
+                bat '.\\mvnw.cmd test'
+            }
+            post{
+                always{
+                    junit 'target\\surefire-reports\\*.xml'
+                }
+            }
+        }
     }
 }
