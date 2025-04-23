@@ -28,10 +28,17 @@ pipeline{
             steps{
                 bat '.\\mvnw.cmd test'
             }
+            //exporting text result
             post{
                 always{
                     junit 'target\\surefire-reports\\*.xml'
                 }
+            }
+        }
+
+        stage('run'){
+            steps{
+                bat '''for %%f in (target\\*.jar) do "%JAVA_HOME%\\bin\\java" -Dserver.port=8090 -jar "%%f"'''
             }
         }
     }
